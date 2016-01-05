@@ -1,12 +1,17 @@
 package games;
 
+import java.awt.Graphics;
+
 import core.IGame;
 
 public class TicTacToe implements IGame {
 
 	@Override
+	public void start(String[] players) {
+	}
+
+	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -15,4 +20,27 @@ public class TicTacToe implements IGame {
 		return "icons/ticTacToe.png";
 	}
 
+	@Override
+	public void update(double dt) {
+
+	}
+
+	@Override
+	public void drawOnTerminal(Graphics g) {
+
+	}
+
+	@Override
+	public void drawOnBoard(Graphics g) {
+
+	}
+
+	@Override
+	public void onPlayerMove(int x, int y) {
+	}
+
+	@Override
+	public void onPlayerClick(int x, int y) {
+
+	}
 }

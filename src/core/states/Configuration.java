@@ -1,5 +1,7 @@
 package core.states;
 
+import java.awt.Graphics;
+
 import javax.swing.*;
 
 import core.IGame;
@@ -22,5 +24,19 @@ public class Configuration implements IState {
 		terminal.add(selectedNumber);
 		terminal.repaint();
 		//textField.setFont(textField.getFont().deriveFont(50f));
+	}
+
+	@Override
+	public void onExit(Lobby l) {
+	}
+
+	@Override
+	public void drawOnTerminal(Graphics g) {
+
+	}
+
+	@Override
+	public void drawOnBoard(Graphics g) {
+
 	}
 }

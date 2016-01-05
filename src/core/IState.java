@@ -1,8 +1,12 @@
 package core;
 
-import javax.swing.JButton;
+import java.awt.Graphics;
 
 public interface IState {
-	// JImageComponent socialSquareLogo;
+
 	void onEnter(Lobby l);
+	void onExit(Lobby l);
+
+	void drawOnTerminal(Graphics g);
+	void drawOnBoard(Graphics g);
 }

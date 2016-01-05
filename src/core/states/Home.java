@@ -1,5 +1,6 @@
 package core.states;
 
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,7 +17,7 @@ public class Home implements IState {
 		selectGame.setBounds(150, 180, 340, 80);
 	}
 
-	public void onEnter(Lobby l) {
+	public void onEnter(final Lobby l) {
 		JPanel terminal = l.getDisplay().terminal;
 		terminal.add(selectGame);
 		selectGame.addActionListener(new ActionListener() {
@@ -25,5 +26,19 @@ public class Home implements IState {
 				l.setState(new GameList());
 			}
 		});
+	}
+
+	@Override
+	public void onExit(Lobby l) {
+	}
+
+	@Override
+	public void drawOnTerminal(Graphics g) {
+
+	}
+
+	@Override
+	public void drawOnBoard(Graphics g) {
+
 	}
 }

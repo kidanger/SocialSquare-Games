@@ -1,5 +1,6 @@
 package core.states;
 
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,12 +14,12 @@ import core.Lobby;
 
 public class GameList implements IState {
 
-	public void onEnter(Lobby l) {
+	public void onEnter(final Lobby l) {
 		JPanel terminal = l.getDisplay().terminal;
 		
 		int pos[][] = {{67, 125}, {255, 125}, {443, 125}, {67, 302}, {255, 302}, {443, 302}};
 		int i = 0;
-		for (IGame game : l.getGameList()) {
+		for (final IGame game : l.getGameList()) {
 			JButton button = new JButton();
 			button.setIcon(new ImageIcon(game.getIconPath()));
 			button.setBorderPainted(false);
@@ -35,5 +36,19 @@ public class GameList implements IState {
 		}
 		
 		terminal.repaint();
+	}
+
+	@Override
+	public void onExit(Lobby l) {
+	}
+
+	@Override
+	public void drawOnTerminal(Graphics g) {
+
+	}
+
+	@Override
+	public void drawOnBoard(Graphics g) {
+
 	}
 }
