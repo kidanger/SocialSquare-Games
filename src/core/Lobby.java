@@ -80,8 +80,7 @@ public class Lobby {
 			e.printStackTrace();
 		}
 
-		Lobby l = new Lobby(0);
+		Lobby l = new Lobby(1);
 		l.setState(new Home());
-		
 	}
 }

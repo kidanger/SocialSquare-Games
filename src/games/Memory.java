@@ -32,8 +32,8 @@ public class Memory extends Game {
 	private Cell returned2;
 	private int currentPositionX;
 	private int currentPositionY;
-	private double lockPositionTimer = 0;
-	private double returningTimer = 0;
+	private double lockPositionTimer;
+	private double returningTimer;
 	private Color[] playersColor = {
 			new Color(0, 69, 137),
 			new Color(75, 149, 0),
