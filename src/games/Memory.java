@@ -1,43 +1,48 @@
 package games;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.swing.JPanel;
-
-import core.IGame;
+import core.Game;
+import core.Lobby;
+import core.states.EndOfGame;
 
 class Cell {
 	int identifier;
 	boolean shown;
 }
 
-public class Memory implements IGame {
+public class Memory extends Game {
 
 	final static private double LOCK_POSITION_TIMER_DURATION = 1. /* seconds */;
 	final static private double RETURNING_TIMER_DURATION = 1. /* seconds */;
 
-	private String[] players;
+	private Lobby lobby;
 	private Cell[][] cells = new Cell[4][4];
 	private Cell returned1;
 	private Cell returned2;
-	private int currentPlayer = 0;
 	private int currentPositionX;
 	private int currentPositionY;
 	private double lockPositionTimer = 0;
 	private double returningTimer = 0;
-	private int[] scores = new int[2];
 	private Color[] playersColor = {
 			new Color(0, 69, 137),
 			new Color(75, 149, 0),
 	};
 
+	public Memory(Lobby lobby) {
+		this.lobby = lobby;
+	}
+
 	@Override
 	public void start(String[] players) {
-		this.players = players;
+		super.start(players);
 		randomizeCells();
 	}
 
@@ -87,6 +92,7 @@ public class Memory implements IGame {
 					returned1 = null;
 					returned2 = null;
 					returningTimer = RETURNING_TIMER_DURATION;
+					checkEndOfGame();
 				}
 			}
 		} else if (lockPositionTimer != 0) {
@@ -98,9 +104,47 @@ public class Memory implements IGame {
 		}
 	}
 
+	private void checkEndOfGame() {
+		for (int x = 0; x < 4; x++) {
+			for (int y = 0; y < 4; y++) {
+				Cell c = cells[x][y];
+				if (!c.shown)
+					return;
+			}
+		}
+		lobby.setState(new EndOfGame(this));
+	}
+
 	@Override
 	public void drawOnTerminal(Graphics g) {
+		Font font = new Font("Morningtype", Font.PLAIN, 30);
+		g.setFont(font);
+		g.setColor(Color.black);
+		for (int dx = -1; dx <= 1; dx++) {
+			for (int dy = -1; dy <= 1; dy++) {
+				g.drawString("Memory", 120+dx, 130+dy);
+			}
+		}
+		g.setColor(playersColor[currentPlayer]);
+		g.drawString("Memory", 120, 130);
 
+		g.setColor(playersColor[currentPlayer]);
+		g.fillRect(0, 160, 320, 380);
+		for (int x = 0; x < 4; x++) {
+			for (int y = 0; y < 4; y++) {
+				Cell c = cells[x][y];
+				if (c.shown) {
+					g.setColor(Color.getHSBColor(c.identifier / 8.f, 1, 1));
+				} else {
+					if (x == currentPositionX && y == currentPositionY) {
+						g.setColor(Color.gray);
+					} else {
+						g.setColor(Color.gray.darker());
+					}
+				}
+				g.fill3DRect((x + 3) * 32, 160 + (y + 3) * 32, 32, 32, true);
+			}
+		}
 	}
 
 	@Override
@@ -134,6 +178,10 @@ public class Memory implements IGame {
 				currentPositionY = y;
 				lockPositionTimer = LOCK_POSITION_TIMER_DURATION;
 			}
+		} else {
+			lockPositionTimer = 0;
+			currentPositionX = -1;
+			currentPositionY = -1;
 		}
 	}
 

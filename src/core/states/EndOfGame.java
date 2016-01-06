@@ -2,10 +2,14 @@ package core.states;
 
 import java.awt.Graphics;
 
+import core.Game;
 import core.IState;
 import core.Lobby;
 
 public class EndOfGame implements IState {
+
+	public EndOfGame(Game game) {
+	}
 
 	public void onEnter(Lobby l) {
 	}

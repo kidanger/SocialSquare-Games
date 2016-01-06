@@ -4,13 +4,13 @@ import java.awt.Graphics;
 
 import javax.swing.*;
 
-import core.IGame;
+import core.Game;
 import core.IState;
 import core.Lobby;
 
 public class Configuration implements IState {
 
-	public Configuration(IGame game) {
+	public Configuration(Game game) {
 	}
 
 	public void onEnter(Lobby l) {

@@ -2,9 +2,9 @@ package games;
 
 import java.awt.Graphics;
 
-import core.IGame;
+import core.Game;
 
-public class TicTacToe implements IGame {
+public class TicTacToe extends Game {
 
 	@Override
 	public void start(String[] players) {
@@ -22,17 +22,14 @@ public class TicTacToe implements IGame {
 
 	@Override
 	public void update(double dt) {
-
 	}
 
 	@Override
 	public void drawOnTerminal(Graphics g) {
-
 	}
 
 	@Override
 	public void drawOnBoard(Graphics g) {
-
 	}
 
 	@Override
@@ -41,6 +38,5 @@ public class TicTacToe implements IGame {
 
 	@Override
 	public void onPlayerClick(int x, int y) {
-
 	}
 }

@@ -2,11 +2,9 @@ package games;
 
 import java.awt.Graphics;
 
-import javax.swing.JPanel;
+import core.Game;
 
-import core.IGame;
-
-public class RunAfterTheLight implements IGame {
+public class RunAfterTheLight extends Game {
 
 	@Override
 	public void start(String[] players) {
@@ -24,7 +22,6 @@ public class RunAfterTheLight implements IGame {
 
 	@Override
 	public void update(double dt) {
-
 	}
 
 	@Override
@@ -33,7 +30,6 @@ public class RunAfterTheLight implements IGame {
 
 	@Override
 	public void drawOnBoard(Graphics g) {
-
 	}
 
 	@Override
@@ -42,6 +38,5 @@ public class RunAfterTheLight implements IGame {
 
 	@Override
 	public void onPlayerClick(int x, int y) {
-
 	}
 }

@@ -1,10 +1,14 @@
 package core;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
+import java.awt.GraphicsEnvironment;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import core.states.Home;
 import core.states.Running;
 import games.*;
 
@@ -12,11 +16,11 @@ public class Lobby {
 
 	private Display display = new Display();
 	private IState state;
-	private List<IGame> games = new ArrayList<IGame>();
+	private List<Game> games = new ArrayList<Game>();
 
 	Lobby() {
 		display.initialize(this);
-		games.add(new Memory());
+		games.add(new Memory(this));
 		games.add(new HopScotch());
 		games.add(new ConnectFour());
 		games.add(new RunAfterTheLight());
@@ -36,16 +40,24 @@ public class Lobby {
 	public Display getDisplay() {
 		return display;
 	}
-	
-	public List<IGame> getGameList() {
+
+	public List<Game> getGameList() {
 		return games;
 	}
 	
 	static public void main(String args[]) {
+		try {
+			Font font = Font.createFont(Font.TRUETYPE_FONT, new File("Morningtype.ttf"));
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			ge.registerFont(font);
+		} catch (FontFormatException | IOException e) {
+			e.printStackTrace();
+		}
+
 		Lobby l = new Lobby();
 		//l.setState(new Home());
+		l.games.get(0).start(new String[]{"Jack", "Henry"});
 		l.setState(new Running(l.games.get(0)));
-		l.games.get(0).start(new String[]{"titi", "toto"});
 	}
 
 	public void drawOnBoard(Graphics g) {
