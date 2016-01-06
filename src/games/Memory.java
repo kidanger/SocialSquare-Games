@@ -3,8 +3,6 @@ package games;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -205,6 +203,16 @@ public class Memory extends Game {
 			returned2.shown = true;
 			returningTimer = RETURNING_TIMER_DURATION;
 		}
+	}
+
+	@Override
+	public int getNumberOfPlayersMin() {
+		return 1;
+	}
+
+	@Override
+	public int getNumberOfPlayersMax() {
+		return 4;
 	}
 
 }

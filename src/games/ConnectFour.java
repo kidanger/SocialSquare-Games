@@ -1,5 +1,6 @@
 package games;
 
+
 import java.awt.Graphics;
 
 import core.Game;
@@ -39,4 +40,14 @@ public class ConnectFour extends Game {
 	@Override
 	public void onPlayerClick(int x, int y) {
 	}
+
+	public int getNumberOfPlayersMin() {
+		return 1;
+	}
+
+	@Override
+	public int getNumberOfPlayersMax() {
+		return 2;
+	}
+
 }

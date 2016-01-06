@@ -39,4 +39,14 @@ public class TicTacToe extends Game {
 	@Override
 	public void onPlayerClick(int x, int y) {
 	}
+
+	public int getNumberOfPlayersMin() {
+		return 1;
+	}
+
+	@Override
+	public int getNumberOfPlayersMax() {
+		return 2;
+	}
+
 }

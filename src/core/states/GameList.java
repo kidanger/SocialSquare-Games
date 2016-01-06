@@ -56,6 +56,5 @@ public class GameList implements IState {
 
 	@Override
 	public void drawOnBoard(Graphics g) {
-
 	}
 }

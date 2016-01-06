@@ -40,4 +40,14 @@ public class HopScotch extends Game {
 	public void onPlayerClick(int x, int y) {
 	}
 
+	@Override
+	public int getNumberOfPlayersMin() {
+		return 1;
+	}
+
+	@Override
+	public int getNumberOfPlayersMax() {
+		return 1;
+	}
+
 }

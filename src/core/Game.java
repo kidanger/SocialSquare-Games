@@ -20,6 +20,9 @@ public abstract class Game {
 	public abstract void drawOnTerminal(Graphics g);
 	public abstract void drawOnBoard(Graphics g);
 
+	public abstract int getNumberOfPlayersMin();
+	public abstract int getNumberOfPlayersMax();
+
 	public abstract void onPlayerMove(int x, int y);
 	public abstract void onPlayerClick(int x, int y);
 

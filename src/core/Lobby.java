@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import core.states.Home;
 import core.states.Running;
 import games.*;
 
@@ -35,6 +36,7 @@ public class Lobby {
 		display.terminal.removeAll();
 		this.state = state;
 		this.state.onEnter(this);
+		display.terminal.repaint();
 	}
 
 	public Display getDisplay() {
@@ -55,9 +57,7 @@ public class Lobby {
 		}
 
 		Lobby l = new Lobby();
-		//l.setState(new Home());
-		l.games.get(0).start(new String[]{"Jack", "Henry"});
-		l.setState(new Running(l.games.get(0)));
+		l.setState(new Home());
 	}
 
 	public void drawOnBoard(Graphics g) {
