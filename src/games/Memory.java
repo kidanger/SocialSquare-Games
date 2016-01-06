@@ -37,6 +37,8 @@ public class Memory extends Game {
 	private Color[] playersColor = {
 			new Color(0, 69, 137),
 			new Color(75, 149, 0),
+			new Color(149, 52, 0),
+			new Color(149, 141, 0),
 	};
 	private BufferedImage images[] = new BufferedImage[8];
 
@@ -102,7 +104,7 @@ public class Memory extends Game {
 					if (returned1.identifier != returned2.identifier) {
 						returned1.shown = false;
 						returned2.shown = false;
-						currentPlayer = currentPlayer * -1 + 1;
+						currentPlayer = (currentPlayer + 1) % getNumberOfPlayers();
 					} else {
 						scores[currentPlayer] += 1;
 					}
@@ -212,7 +214,6 @@ public class Memory extends Game {
 
 	@Override
 	public void onPlayerClick(int x, int y) {
-		//playAt(x, y);
 	}
 
 	private void playAt(int x, int y) {
@@ -234,7 +235,7 @@ public class Memory extends Game {
 
 	@Override
 	public int getNumberOfPlayersMin() {
-		return 1;
+		return 2;
 	}
 
 	@Override
