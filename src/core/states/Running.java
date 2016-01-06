@@ -65,17 +65,6 @@ public class Running implements IState {
 			}
 		});
 
-		timer = new Timer(100, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent actionEvent) {
-				game.update(0.1);
-				updatePane();
-				terminal.repaint();
-				board.repaint();
-			}
-		});
-		timer.start();
-
 		currentPlayer.setBounds(640/2 + 10, 80 + 20, 640/2 - 20, 100);
 		currentPlayer.setFont(new Font("Morningtype", Font.BOLD, 26));
 		for (int i = 0; i < game.getNumberOfPlayers(); i++) {
@@ -91,17 +80,19 @@ public class Running implements IState {
 		}
 	}
 
-	private void updatePane() {
+	@Override
+	public void onExit(Lobby l) {
+		timer.stop();
+	}
+
+	public void update(Lobby lobby, double dt) {
+		game.update(dt);
+
 		currentPlayer.setText("Joueur courant : " + game.getCurrentPlayerName());
 		for (int i = 0; i < scores.size(); i++) {
 			JLabel label = scores.get(i);
 			label.setText(game.getPlayerName(i) + " : " + game.getPlayerScore(i) + " points");
 		}
-	}
-
-	@Override
-	public void onExit(Lobby l) {
-		timer.stop();
 	}
 
 	@Override

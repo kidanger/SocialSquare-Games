@@ -11,16 +11,17 @@ import java.util.List;
 
 import core.states.EndOfGame;
 import core.states.Home;
-import core.states.Running;
 import games.*;
 
 public class Lobby {
 
+	private int id;
 	private Display display = new Display();
 	private IState state;
 	private List<Game> games = new ArrayList<Game>();
 
-	Lobby() {
+	Lobby(int id) {
+		this.id = id;
 		display.initialize(this);
 		games.add(new Memory(this));
 		games.add(new HopScotch());
@@ -47,7 +48,29 @@ public class Lobby {
 	public List<Game> getGameList() {
 		return games;
 	}
-	
+
+	public void update(double dt) {
+		if (state != null) {
+			state.update(this, dt);
+		}
+	}
+
+	public void drawOnBoard(Graphics g) {
+		if (state != null) {
+			state.drawOnBoard(g);
+		}
+	}
+
+	public void drawOnTerminal(Graphics g) {
+		if (state != null) {
+			state.drawOnTerminal(g);
+		}
+	}
+
+	public int getID() {
+		return id;
+	}
+
 	static public void main(String args[]) {
 		try {
 			Font font = Font.createFont(Font.TRUETYPE_FONT, new File("Morningtype.ttf"));
@@ -57,16 +80,8 @@ public class Lobby {
 			e.printStackTrace();
 		}
 
-		Lobby l = new Lobby();
+		Lobby l = new Lobby(0);
 		l.setState(new Home());
 		
-	}
-
-	public void drawOnBoard(Graphics g) {
-		state.drawOnBoard(g);
-	}
-
-	public void drawOnTerminal(Graphics g) {
-		state.drawOnTerminal(g);
 	}
 }

@@ -7,6 +7,8 @@ import javax.swing.*;
 import core.Game;
 import core.IState;
 import core.Lobby;
+import core.ServerUtils;
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +23,7 @@ public class Configuration implements IState {
 	}
 
 	public void onEnter(final Lobby l) {
+		ServerUtils.updateTerminal(l.getID(), true, game.getName());
 		JPanel terminal = l.getDisplay().terminal;
 		
 		JLabel numberOfGamers = new JLabel("Nombre de joueurs");
@@ -74,6 +77,11 @@ public class Configuration implements IState {
 	}
 
 	@Override
+	public void update(Lobby lobby, double dt) {
+		lobby.getDisplay().idle(dt);
+	}
+
+	@Override
 	public void onExit(Lobby l) {
 	}
 
@@ -81,7 +89,9 @@ public class Configuration implements IState {
 		g.setColor(Color.black);
 		g.drawLine(240, 100, 240, 480 - 10);
 		g.drawLine(10, 100, 640 - 10, 100);
-		//game.drawOnTerminal(g);
 	}
 
+	@Override
+	public void drawOnBoard(Graphics g) {
+	}
 }

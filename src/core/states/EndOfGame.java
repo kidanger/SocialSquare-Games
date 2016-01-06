@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import core.Game;
 import core.IState;
 import core.Lobby;
+import core.ServerUtils;
 
 public class EndOfGame implements IState {
 
@@ -72,10 +73,27 @@ public class EndOfGame implements IState {
 			}
 		});
 		terminal.repaint();
+
+		int scoreMax = 0;
+		for (int i = 0; i < game.getNumberOfPlayers(); i++) {
+			if (game.getPlayerScore(i) > scoreMax) {
+				scoreMax = game.getPlayerScore(i);
+			}
+		}
+		for (int i = 0; i < game.getNumberOfPlayers(); i++) {
+			if (game.getPlayerScore(i) == scoreMax) {
+				ServerUtils.postScore(game.getName(), game.getPlayerName(i), scoreMax);
+			}
+		}
 	}
 
 	@Override
 	public void onExit(Lobby l) {
+	}
+
+	@Override
+	public void update(Lobby lobby, double dt) {
+		lobby.getDisplay().idle(dt);
 	}
 
 	@Override

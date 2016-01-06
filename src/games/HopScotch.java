@@ -12,7 +12,7 @@ public class HopScotch extends Game {
 
 	@Override
 	public String getName() {
-		return null;
+		return "Marelle";
 	}
 
 	@Override

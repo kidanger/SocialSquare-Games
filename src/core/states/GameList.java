@@ -9,14 +9,17 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import core.Game;
 import core.IState;
 import core.Lobby;
+import core.ServerUtils;
 
 public class GameList implements IState {
 
 	public void onEnter(final Lobby l) {
+		ServerUtils.updateTerminal(l.getID(), true, null);
 		JPanel terminal = l.getDisplay().terminal;
 
 		Font font = new Font("Morningtype", Font.PLAIN, 20);
@@ -34,8 +37,10 @@ public class GameList implements IState {
 			button.setIcon(new ImageIcon(game.getIconPath()));
 			button.setBorderPainted(false);
 			button.setBounds(pos[i][0], pos[i][1], 128, 128);
+			button.setContentAreaFilled(false);
+			button.setOpaque(false);
 			terminal.add(button);
-			
+
 			button.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -44,8 +49,10 @@ public class GameList implements IState {
 			});
 			button.setEnabled(i == 0);
 
-			JLabel label = new JLabel(game.getName());
+			JLabel label = new JLabel(game.getName(), SwingConstants.CENTER);
 			label.setFont(font);
+			label.setBounds(pos[i][0], pos[i][1] + 76, 128, 128);
+			terminal.add(label);
 
 			i++;
 		}
@@ -60,6 +67,11 @@ public class GameList implements IState {
 
 	@Override
 	public void onExit(Lobby l) {
+	}
+
+	@Override
+	public void update(Lobby lobby, double dt) {
+		lobby.getDisplay().idle(dt);
 	}
 
 	@Override

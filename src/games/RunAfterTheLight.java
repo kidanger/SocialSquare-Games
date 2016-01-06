@@ -12,7 +12,7 @@ public class RunAfterTheLight extends Game {
 
 	@Override
 	public String getName() {
-		return null;
+		return "Course lumière";
 	}
 
 	@Override

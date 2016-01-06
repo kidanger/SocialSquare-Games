@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import core.IState;
 import core.Lobby;
+import core.ServerUtils;
 
 public class Home implements IState {
 
@@ -18,6 +19,7 @@ public class Home implements IState {
 	}
 
 	public void onEnter(final Lobby l) {
+		ServerUtils.updateTerminal(l.getID(), false, null);
 		JPanel terminal = l.getDisplay().terminal;
 		selectGame.setBounds(150, 180, 340, 80);
 		terminal.add(selectGame);
@@ -31,6 +33,11 @@ public class Home implements IState {
 
 	@Override
 	public void onExit(Lobby l) {
+	}
+
+	@Override
+	public void update(Lobby lobby, double dt) {
+		lobby.getDisplay().idle(dt);
 	}
 
 	@Override

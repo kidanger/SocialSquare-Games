@@ -13,7 +13,7 @@ public class ConnectFour extends Game {
 
 	@Override
 	public String getName() {
-		return null;
+		return "Puissance 4";
 	}
 
 	@Override

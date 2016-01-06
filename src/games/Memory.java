@@ -3,9 +3,14 @@ package games;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import core.Game;
 import core.Lobby;
@@ -33,14 +38,28 @@ public class Memory extends Game {
 			new Color(0, 69, 137),
 			new Color(75, 149, 0),
 	};
+	private BufferedImage images[] = new BufferedImage[8];
 
 	public Memory(Lobby lobby) {
 		this.lobby = lobby;
+		for (int i = 0; i < 8; i++) {
+			try {
+				String filename = "icons/memory/" + (i + 1) + ".png";
+				images[i] = ImageIO.read(new File(filename));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
 	public void start(String[] players) {
 		super.start(players);
+		returned1 = null;
+		returned2 = null;
+		lockPositionTimer = 0;
+		currentPositionX = currentPositionY = 0;
+		returningTimer = 0;
 		randomizeCells();
 	}
 
@@ -141,6 +160,9 @@ public class Memory extends Game {
 					}
 				}
 				g.fill3DRect((x + 3) * 32, 160 + (y + 3) * 32, 32, 32, true);
+				if (c.shown) {
+					g.drawImage(images[c.identifier], (x + 3) * 32, 160 + (y + 3) * 32, 32, 32, null);
+				}
 			}
 		}
 	}
@@ -162,6 +184,9 @@ public class Memory extends Game {
 					}
 				}
 				g.fill3DRect((x + 3) * 64, (y + 3) * 64, 64, 64, true);
+				if (c.shown) {
+					g.drawImage(images[c.identifier], (x + 3) * 64, (y + 3) * 64, 64, 64, null);
+				}
 			}
 		}
 	}
