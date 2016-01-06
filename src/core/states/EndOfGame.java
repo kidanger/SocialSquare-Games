@@ -1,7 +1,7 @@
 package core.states;
+import java.awt.Font;
 import java.awt.Graphics;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,20 +22,40 @@ public class EndOfGame implements IState {
 	}
 
 	public void onEnter(final Lobby l) {
+		int winner = game.getWinner();
 		JPanel terminal = l.getDisplay().terminal;
-		JLabel congrats = new JLabel(" Joueur 1 a gagné, bravo :)");
-		congrats.setBounds(100, 100, 200, 25);
+		
+		String congratsText="";
+		if (winner != -1){
+			congratsText = "<html>Fin de la partie <br> " 
+					 + "Bravo " + game.getPlayerName(winner) +", vous avez gagné !!!  </html>";
+		}
+		else{
+			congratsText = "<html>Match nul!  </html>";
+		}
+		
+		JLabel congrats = new JLabel(congratsText);
+		congrats.setFont(new Font("Morningtype", Font.BOLD, 26));
+		congrats.setBounds(100, 100, 300, 60);
 		terminal.add(congrats);
 
 		JButton newGame =  new JButton("Commencer une nouvelle partie");
+		newGame.setFont(new Font("Morningtype", Font.BOLD, 15));
 		newGame.setBounds(200,  250,  300, 60);
 		terminal.add(newGame);
 
-		JButton backToMenu =  new JButton("Retour au menu");
+		JButton backToMenu =  new JButton("Retour à l'accueil");
 		backToMenu.setBounds(50,  400,  200, 40);
 		terminal.add(backToMenu);
-
-		JLabel scores = new JLabel("<html>Scores : <br>\nJoueur 1 : 10 <br>\nJoueur 2 : 8</html>");
+		
+		String scoreText = "<html>Scores <br> ";
+		for (int i=0; i<game.getNumberOfPlayers(); i++){
+			scoreText+=" &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; " + game.getPlayerName(i) + " : " + game.getPlayerScore(i) + " <br> " ;
+		}
+		scoreText+="</html>";
+		
+		JLabel scores = new JLabel(scoreText);
+		scores.setFont(new Font("Morningtype", Font.BOLD, 20));
 		scores.setBounds(100, 150, 200, 100);
 		terminal.add(scores);
 

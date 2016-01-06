@@ -41,4 +41,28 @@ public abstract class Game {
 	public int getNumberOfPlayers() {
 		return players.length;
 	}
+	
+	
+	public int getWinner(){
+		int maxScore = -1;
+		int exaequo = -1;
+		int winner = -1;
+		
+		for (int i=0; i<scores.length; i++){
+			if (scores[i]>maxScore){
+				maxScore=scores[i];
+				winner=i;
+				exaequo=-1;
+			}			
+			if (scores[i]==maxScore){
+				maxScore=scores[i];
+				exaequo=1;
+			}
+		}
+		if (exaequo==-1){
+			return winner;
+		}else{
+			return -1;
+		}
+	}
 }

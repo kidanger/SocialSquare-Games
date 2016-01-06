@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import core.states.EndOfGame;
 import core.states.Home;
 import core.states.Running;
 import games.*;
@@ -58,6 +59,7 @@ public class Lobby {
 
 		Lobby l = new Lobby();
 		l.setState(new Home());
+		
 	}
 
 	public void drawOnBoard(Graphics g) {

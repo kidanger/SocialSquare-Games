@@ -11,6 +11,8 @@ import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -34,7 +36,22 @@ public class Running implements IState {
 	@Override
 	public void onEnter(final Lobby l) {
 		final JPanel terminal = l.getDisplay().terminal;
+		
+		JButton back = new JButton();
+		back.setBounds(30, 20, 70, 70);
+		back.setIcon(new ImageIcon("icons/retour.png"));
+		back.setBorderPainted(false);
+		terminal.add(back);
+		
 		final JPanel board = l.getDisplay().board;
+		
+		back.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				l.setState(new Configuration(game));
+			}
+		});
+		
 		board.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {

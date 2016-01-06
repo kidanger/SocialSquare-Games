@@ -22,6 +22,13 @@ public class GameList implements IState {
 		Font font = new Font("Morningtype", Font.PLAIN, 20);
 		int pos[][] = {{67, 125}, {255, 125}, {443, 125}, {67, 302}, {255, 302}, {443, 302}};
 		int i = 0;
+		
+		JButton back = new JButton();
+		back.setBounds(30, 20, 70, 70);
+		back.setBorderPainted(false);
+		back.setIcon(new ImageIcon("icons/retour.png"));
+		terminal.add(back);
+		
 		for (final Game game : l.getGameList()) {
 			JButton button = new JButton();
 			button.setIcon(new ImageIcon(game.getIconPath()));
@@ -42,7 +49,12 @@ public class GameList implements IState {
 
 			i++;
 		}
-		
+		back.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				l.setState(new Home());
+			}
+		});
 		terminal.repaint();
 	}
 
