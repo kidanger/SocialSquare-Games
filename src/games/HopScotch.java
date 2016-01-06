@@ -15,4 +15,16 @@ public class HopScotch implements IGame {
 		return "icons/marelle.png";
 	}
 
+	@Override
+	public int getNumberOfGamersMin() {
+		// TODO Auto-generated method stub
+		return 1;
+	}
+
+	@Override
+	public int getNumberOfGamersMax() {
+		// TODO Auto-generated method stub
+		return 1;
+	}
+
 }

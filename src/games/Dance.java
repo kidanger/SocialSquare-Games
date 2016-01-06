@@ -15,4 +15,16 @@ public class Dance implements IGame {
 		return "icons/dance.png";
 	}
 
+	@Override
+	public int getNumberOfGamersMin() {
+		// TODO Auto-generated method stub
+		return 1;
+	}
+
+	@Override
+	public int getNumberOfGamersMax() {
+		// TODO Auto-generated method stub
+		return 20;
+	}
+
 }

@@ -14,4 +14,16 @@ public class Memory implements IGame {
 		return "icons/memory.png";
 	}
 
+	@Override
+	public int getNumberOfGamersMin() {
+		// TODO Auto-generated method stub
+		return 1;
+	}
+
+	@Override
+	public int getNumberOfGamersMax() {
+		// TODO Auto-generated method stub
+		return 4;
+	}
+
 }

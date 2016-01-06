@@ -12,6 +12,9 @@ public class Lobby {
 	private IState state;
 	private List<IGame> games = new ArrayList<IGame>();
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	Lobby() {
 		display.initialize();
 		games.add(new Memory());

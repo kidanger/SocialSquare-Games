@@ -15,4 +15,16 @@ public class ConnectFour implements IGame {
 		return "icons/puissance4.png";
 	}
 
+	@Override
+	public int getNumberOfGamersMin() {
+		// TODO Auto-generated method stub
+		return 1;
+	}
+
+	@Override
+	public int getNumberOfGamersMax() {
+		// TODO Auto-generated method stub
+		return 2;
+	}
+
 }

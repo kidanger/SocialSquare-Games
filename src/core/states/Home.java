@@ -12,12 +12,14 @@ import core.Lobby;
 public class Home implements IState {
 	public JButton selectGame = new JButton("Sélectionner un jeu");
 	
+	
 	public Home (){
-		selectGame.setBounds(150, 180, 340, 80);
 	}
 
+	
 	public void onEnter(Lobby l) {
 		JPanel terminal = l.getDisplay().terminal;
+		selectGame.setBounds(150, 180, 340, 80);
 		terminal.add(selectGame);
 		selectGame.addActionListener(new ActionListener() {
 			@Override

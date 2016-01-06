@@ -12,8 +12,13 @@ import core.IState;
 import core.Lobby;
 
 public class GameList implements IState {
-
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public void onEnter(Lobby l) {
+		/**
+		 * @wbp.parser.entryPoint
+		 */
 		JPanel terminal = l.getDisplay().terminal;
 		
 		int pos[][] = {{67, 125}, {255, 125}, {443, 125}, {67, 302}, {255, 302}, {443, 302}};

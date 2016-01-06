@@ -15,4 +15,16 @@ public class RunAfterTheLight implements IGame {
 		return "icons/coursLumiere.png";
 	}
 
+	@Override
+	public int getNumberOfGamersMin() {
+		// TODO Auto-generated method stub
+		return 1;
+	}
+
+	@Override
+	public int getNumberOfGamersMax() {
+		// TODO Auto-generated method stub
+		return 10;
+	}
+
 }
