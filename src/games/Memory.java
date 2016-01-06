@@ -23,7 +23,7 @@ class Cell {
 
 public class Memory extends Game {
 
-	final static private double LOCK_POSITION_TIMER_DURATION = 1. /* seconds */;
+	final static private double LOCK_POSITION_TIMER_DURATION = 2. /* seconds */;
 	final static private double RETURNING_TIMER_DURATION = 1. /* seconds */;
 
 	private Lobby lobby;
@@ -153,15 +153,16 @@ public class Memory extends Game {
 				if (c.shown) {
 					g.setColor(Color.getHSBColor(c.identifier / 8.f, 1, 1));
 				} else {
-					if (x == currentPositionX && y == currentPositionY) {
-						g.setColor(Color.gray);
-					} else {
-						g.setColor(Color.gray.darker());
-					}
+					g.setColor(Color.gray.darker());
 				}
 				g.fill3DRect((x + 3) * 32, 160 + (y + 3) * 32, 32, 32, true);
 				if (c.shown) {
 					g.drawImage(images[c.identifier], (x + 3) * 32, 160 + (y + 3) * 32, 32, 32, null);
+				}
+				if (!c.shown && x == currentPositionX && y == currentPositionY) {
+					Color color = new Color(.8f, .8f, .8f, (float) (lockPositionTimer / LOCK_POSITION_TIMER_DURATION));
+					g.setColor(color);
+					g.fillRect((x + 3) * 32, 160 + (y + 3) * 32, 32, 32);
 				}
 			}
 		}
@@ -177,15 +178,16 @@ public class Memory extends Game {
 				if (c.shown) {
 					g.setColor(Color.getHSBColor(c.identifier / 8.f, 1, 1));
 				} else {
-					if (x == currentPositionX && y == currentPositionY) {
-						g.setColor(Color.gray);
-					} else {
-						g.setColor(Color.gray.darker());
-					}
+					g.setColor(Color.gray.darker());
 				}
 				g.fill3DRect((x + 3) * 64, (y + 3) * 64, 64, 64, true);
 				if (c.shown) {
 					g.drawImage(images[c.identifier], (x + 3) * 64, (y + 3) * 64, 64, 64, null);
+				}
+				if (!c.shown && x == currentPositionX && y == currentPositionY) {
+					Color color = new Color(.8f, .8f, .8f, (float) (lockPositionTimer / LOCK_POSITION_TIMER_DURATION));
+					g.setColor(color);
+					g.fillRect((x + 3) * 64, (y + 3) * 64, 64, 64);
 				}
 			}
 		}

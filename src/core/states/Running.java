@@ -25,7 +25,6 @@ import core.Lobby;
 public class Running implements IState {
 
 	private Game game;
-	private Timer timer;
 	private JLabel currentPlayer = new JLabel("", SwingConstants.CENTER);
 	private List<JLabel> scores = new ArrayList<JLabel>();
 
@@ -82,7 +81,6 @@ public class Running implements IState {
 
 	@Override
 	public void onExit(Lobby l) {
-		timer.stop();
 	}
 
 	public void update(Lobby lobby, double dt) {
