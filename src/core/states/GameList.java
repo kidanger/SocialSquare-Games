@@ -32,6 +32,11 @@ public class GameList implements IState {
 		back.setIcon(new ImageIcon("icons/retour.png"));
 		terminal.add(back);
 		
+		JLabel labelLogo = new JLabel();
+		labelLogo.setIcon(new ImageIcon("icons/logoMiniature.png"));
+		labelLogo.setBounds(245, 10, 150, 89);
+		terminal.add(labelLogo);
+		
 		for (final Game game : l.getGameList()) {
 			JButton button = new JButton();
 			button.setIcon(new ImageIcon(game.getIconPath()));

@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -41,6 +42,11 @@ public class EndOfGame implements IState {
 		congrats.setBounds(100, 100, 500, 60);
 		terminal.add(congrats);
 
+		JLabel labelLogo = new JLabel();
+		labelLogo.setIcon(new ImageIcon("icons/logoMiniature.png"));
+		labelLogo.setBounds(245, 10, 150, 89);
+		terminal.add(labelLogo);
+		
 		JButton newGame =  new JButton("Commencer une nouvelle partie");
 		newGame.setFont(new Font("Morningtype", Font.BOLD, 15));
 		newGame.setBounds(200,  300,  300, 60);

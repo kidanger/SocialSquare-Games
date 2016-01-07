@@ -5,8 +5,14 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import core.IState;
@@ -15,18 +21,23 @@ import core.ServerUtils;
 
 public class Home implements IState {
 
-	
-
 	public Home (){
 	}
 
 	public void onEnter(final Lobby l) {
+		JPanel terminal = l.getDisplay().terminal;
+		
 		JButton selectGame = new JButton("Sélectionner un jeu");
 		selectGame.setFont(new Font("Morningtype", Font.PLAIN, 20));
 		ServerUtils.updateTerminal(l.getID(), false, null);
-		JPanel terminal = l.getDisplay().terminal;
-		selectGame.setBounds(150, 180, 340, 80);
+		selectGame.setBounds(150, 380, 340, 80);
 		terminal.add(selectGame);
+		
+		JLabel label = new JLabel();
+		label.setIcon(new ImageIcon("icons/logo.png"));
+		label.setBounds(10, 10, 600, 356);
+		terminal.add(label);
+		
 		selectGame.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

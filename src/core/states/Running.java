@@ -42,6 +42,11 @@ public class Running implements IState {
 		back.setBorderPainted(false);
 		terminal.add(back);
 		
+		JLabel labelLogo = new JLabel();
+		labelLogo.setIcon(new ImageIcon("icons/logoMiniature.png"));
+		labelLogo.setBounds(245, 10, 150, 89);
+		terminal.add(labelLogo);
+		
 		final JPanel board = l.getDisplay().board;
 		
 		back.addActionListener(new ActionListener() {

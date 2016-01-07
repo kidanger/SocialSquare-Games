@@ -85,13 +85,13 @@ public class Configuration implements IState {
 		for (idx = 0; idx <= game.getNumberOfPlayersMax(); idx++) {
 			JLabel label = new JLabel("Joueur " + (idx + 1));
 			label.setFont(new Font("Morningtype", Font.PLAIN, 20));
-			label.setBounds(300, 230 + idx * 40, 200, 30);
+			label.setBounds(350, 230 + idx * 40, 200, 30);
 			terminal.add(label);
 			label.setVisible(false);
 			labels.add(label);
 
 			JTextField field = new JTextField("");
-			field.setBounds(400, 230 + idx * 40, 150, 30);
+			field.setBounds(450, 230 + idx * 40, 150, 30);
 			terminal.add(field);
 			field.getDocument().addDocumentListener(new DocumentListener() {
 				@Override
@@ -121,6 +121,10 @@ public class Configuration implements IState {
 			field.setVisible(false);
 			fields.add(field);
 		}
+		JLabel labelLogo = new JLabel();
+		labelLogo.setIcon(new ImageIcon("icons/logoMiniature.png"));
+		labelLogo.setBounds(245, 10, 150, 89);
+		terminal.add(labelLogo);
 		
 		JButton back = new JButton();
 		back.setBounds(30, 20,  70, 70);
