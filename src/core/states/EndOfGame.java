@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -12,6 +13,7 @@ import javax.swing.JPanel;
 import core.Game;
 import core.IState;
 import core.Lobby;
+import core.Score;
 import core.ServerUtils;
 
 public class EndOfGame implements IState {
@@ -25,14 +27,15 @@ public class EndOfGame implements IState {
 	public void onEnter(final Lobby l) {
 		int winner = game.getWinner();
 		JPanel terminal = l.getDisplay().terminal;
-		
-		String congratsText="";
+		List<Score> oldScores = ServerUtils.getScoresOfGame(game.getName());
+
+		String congratsText;
 		if (winner != -1){
 			congratsText = "<html>Fin de la partie <br> " 
-					 + "Bravo " + game.getPlayerName(winner) +", vous avez gagné !!!  </html>";
+					 + "Bravo " + game.getPlayerName(winner) +", vous avez gagné !</html>";
 		}
 		else{
-			congratsText = "<html>Match nul!  </html>";
+			congratsText = "<html>Match nul !</html>";
 		}
 		
 		JLabel congrats = new JLabel(congratsText);
@@ -50,10 +53,23 @@ public class EndOfGame implements IState {
 		terminal.add(backToMenu);
 		
 		String scoreText = "<html>Scores <br> ";
-		for (int i=0; i<game.getNumberOfPlayers(); i++){
-			scoreText+=" &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; " + game.getPlayerName(i) + " : " + game.getPlayerScore(i) + " <br> " ;
+		for (int i = 0; i < game.getNumberOfPlayers(); i++) {
+			boolean betterScore = false;
+			String username = game.getPlayerName(i);
+			for (Score score : oldScores) {
+				if (score.username.equals(username)) {
+					if (game.getPlayerScore(i) > score.score) {
+						betterScore = true;
+					}
+				}
+			}
+			scoreText += " &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; " + username
+					+ " : " + game.getPlayerScore(i) + " <br> " ;
+			if (betterScore) {
+				scoreText += "(Nouveau record !)";
+			}
 		}
-		scoreText+="</html>";
+		scoreText += "</html>";
 		
 		JLabel scores = new JLabel(scoreText);
 		scores.setFont(new Font("Morningtype", Font.BOLD, 20));

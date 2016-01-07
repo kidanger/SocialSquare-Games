@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -64,7 +65,8 @@ public class Memory extends Game {
 		for (int i = 0; i < 4*4; i++) {
 			positions.add(i);
 		}
-		Collections.shuffle(positions);
+		Random random = new Random(0);
+		Collections.shuffle(positions, random);
 
 		for (int i = 0; i < 4*4; i++) {
 			int x = positions.get(i) / 4;
@@ -102,7 +104,6 @@ public class Memory extends Game {
 					}
 					returned1 = null;
 					returned2 = null;
-					returningTimer = RETURNING_TIMER_DURATION;
 					checkEndOfGame();
 				}
 			}
@@ -206,6 +207,14 @@ public class Memory extends Game {
 
 	@Override
 	public void onPlayerClick(int x, int y) {
+		int xx = x / 32 - 3;
+		int yy = (y - 160) / 32 - 3;
+		System.out.println(xx + " " + yy + " " + returningTimer);
+		if (xx >= 0 && xx < 4 && yy >= 0 && yy < 4) {
+			playAt(xx, yy);
+			currentPositionX = xx;
+			currentPositionY = yy;
+		}
 	}
 
 	private void playAt(int x, int y) {
@@ -217,12 +226,10 @@ public class Memory extends Game {
 		if (returned1 == null) {
 			returned1 = cells[x][y];
 			returned1.shown = true;
-			returningTimer = RETURNING_TIMER_DURATION;
 			lobby.playSound("memory/select.wav");
 		} else {
 			returned2 = cells[x][y];
 			returned2.shown = true;
-			returningTimer = RETURNING_TIMER_DURATION;
 			if (returned1.identifier == returned2.identifier) {
 				lobby.playSound("memory/valid.wav");
 				scores[currentPlayer] += 1;
@@ -230,6 +237,7 @@ public class Memory extends Game {
 				lobby.playSound("memory/invalid.wav");
 			}
 		}
+		returningTimer = RETURNING_TIMER_DURATION;
 	}
 
 	@Override
