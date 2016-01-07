@@ -8,8 +8,12 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -41,9 +45,25 @@ public class Display {
 			}
 		}
 	};
+	static BufferedImage backgroundImage;
+	static {
+		try {
+			String filename = "background/quadrillage1.png";
+			backgroundImage = ImageIO.read(new File(filename));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public JPanel terminal = new JPanel() {
 		@Override
 		public void paintComponent(Graphics g) {
+			if (backgroundImage != null) {
+				g.drawImage(backgroundImage, 0, 0, 320, 240, 0, 0, 320, 240, null);
+				g.drawImage(backgroundImage, 320, 0, 640, 240, 320, 0, 640, 240, null);
+				g.drawImage(backgroundImage, 0, 240, 320, 480, 0, 240, 320, 480, null);
+				g.drawImage(backgroundImage, 320, 240, 640, 480, 320, 240, 640, 480, null);
+			}
 			((Graphics2D) g).setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
 			super.paintComponent(g);
 			lobby.drawOnTerminal(g);
@@ -60,6 +80,7 @@ public class Display {
 
 		board.setLayout(null);
 		terminal.setLayout(null);
+		terminal.setOpaque(false);
 
 		boardFrame.setContentPane(board);
 		terminalFrame.setContentPane(terminal);

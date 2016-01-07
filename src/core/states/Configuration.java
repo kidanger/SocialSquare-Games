@@ -73,6 +73,7 @@ public class Configuration implements IState {
 		int idx = 0;
 		for (int i = game.getNumberOfPlayersMin(); i <= game.getNumberOfPlayersMax(); i++) {
 			JRadioButton button = new JRadioButton(Integer.toString(i));
+			button.setOpaque(false);
 			button.setFont(new Font("Morningtype", Font.PLAIN, 20));
 			button.setBounds(300 + 55 * idx, 175, 50, 30);
 			terminal.add(button);
