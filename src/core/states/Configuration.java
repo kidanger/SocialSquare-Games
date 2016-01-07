@@ -12,6 +12,7 @@ import core.Lobby;
 import core.ServerUtils;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -29,8 +30,14 @@ public class Configuration implements IState {
 		final JPanel terminal = l.getDisplay().terminal;
 		
 		JLabel numberOfPlayers = new JLabel("Nombre de joueurs");
-		numberOfPlayers.setBounds(100, 150, 200, 100);
+		numberOfPlayers.setBounds(300, 75, 200, 100);
+		numberOfPlayers.setFont(new Font("Morningtype", Font.BOLD, 26));
 		terminal.add(numberOfPlayers);
+
+		JLabel ranking = new JLabel("Classement");
+		ranking.setBounds(50, 75, 200, 100);
+		ranking.setFont(new Font("Morningtype", Font.BOLD, 26));
+		terminal.add(ranking);
 
 		final List<JLabel> labels = new ArrayList<JLabel>();
 		final List<JTextField> fields = new ArrayList<JTextField>();
@@ -55,6 +62,7 @@ public class Configuration implements IState {
 		}
 
 		final JButton validate = new JButton("Commencer le jeu !");
+		validate.setFont(new Font("Morningtype", Font.PLAIN, 20));
 		validate.setBounds(300,  400,  200, 40);
 		terminal.add(validate);
 		validate.setEnabled(false);
@@ -63,6 +71,7 @@ public class Configuration implements IState {
 		int idx = 0;
 		for (int i = game.getNumberOfPlayersMin(); i <= game.getNumberOfPlayersMax(); i++) {
 			JRadioButton button = new JRadioButton(Integer.toString(i));
+			button.setFont(new Font("Morningtype", Font.PLAIN, 20));
 			button.setBounds(300 + 55 * idx, 175, 50, 30);
 			terminal.add(button);
 			group.add(button);
@@ -72,6 +81,7 @@ public class Configuration implements IState {
 		}
 		for (idx = 0; idx <= game.getNumberOfPlayersMax(); idx++) {
 			JLabel label = new JLabel("Joueur " + (idx + 1));
+			label.setFont(new Font("Morningtype", Font.PLAIN, 20));
 			label.setBounds(300, 230 + idx * 40, 200, 30);
 			terminal.add(label);
 			label.setVisible(false);

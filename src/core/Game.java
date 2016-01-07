@@ -42,7 +42,6 @@ public abstract class Game {
 		return players.length;
 	}
 	
-	
 	public int getWinner(){
 		int maxScore = -1;
 		int exaequo = -1;

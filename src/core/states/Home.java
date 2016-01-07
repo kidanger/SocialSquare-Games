@@ -1,5 +1,6 @@
 package core.states;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,12 +14,14 @@ import core.ServerUtils;
 
 public class Home implements IState {
 
-	public JButton selectGame = new JButton("Sélectionner un jeu");
+	
 
 	public Home (){
 	}
 
 	public void onEnter(final Lobby l) {
+		JButton selectGame = new JButton("Sélectionner un jeu");
+		selectGame.setFont(new Font("Morningtype", Font.PLAIN, 20));
 		ServerUtils.updateTerminal(l.getID(), false, null);
 		JPanel terminal = l.getDisplay().terminal;
 		selectGame.setBounds(150, 180, 340, 80);
