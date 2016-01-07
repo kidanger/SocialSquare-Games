@@ -4,14 +4,19 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import core.states.EndOfGame;
 import core.states.Home;
 import games.*;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
 public class Lobby {
 
@@ -69,6 +74,16 @@ public class Lobby {
 
 	public int getID() {
 		return id;
+	}
+
+	public void playSound(String name) {
+		try {
+			InputStream inputStream = new FileInputStream(new File("sounds/" + name));
+			AudioStream audioStream = new AudioStream(inputStream);
+			AudioPlayer.player.start(audioStream);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	static public void main(String args[]) {

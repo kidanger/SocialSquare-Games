@@ -105,8 +105,6 @@ public class Memory extends Game {
 						returned1.shown = false;
 						returned2.shown = false;
 						currentPlayer = (currentPlayer + 1) % getNumberOfPlayers();
-					} else {
-						scores[currentPlayer] += 1;
 					}
 					returned1 = null;
 					returned2 = null;
@@ -226,10 +224,17 @@ public class Memory extends Game {
 			returned1 = cells[x][y];
 			returned1.shown = true;
 			returningTimer = RETURNING_TIMER_DURATION;
+			lobby.playSound("memory/select.wav");
 		} else {
 			returned2 = cells[x][y];
 			returned2.shown = true;
 			returningTimer = RETURNING_TIMER_DURATION;
+			if (returned1.identifier == returned2.identifier) {
+				lobby.playSound("memory/valid.wav");
+				scores[currentPlayer] += 1;
+			} else {
+				lobby.playSound("memory/invalid.wav");
+			}
 		}
 	}
 
