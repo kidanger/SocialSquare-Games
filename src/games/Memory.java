@@ -125,6 +125,7 @@ public class Memory extends Game {
 			}
 		}
 		lobby.setState(new EndOfGame(this));
+		lobby.playSound("memory/TaDaFanfare.wav");
 	}
 
 	@Override

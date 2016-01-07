@@ -80,12 +80,14 @@ public class EndOfGame implements IState {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				l.setState(new Home());
+				l.playSound("memory/clic.wav");
 			}
 		});
 		newGame.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				l.setState(new Configuration(game));
+				l.playSound("memory/clic.wav");
 			}
 		});
 		terminal.repaint();

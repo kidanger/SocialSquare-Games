@@ -45,6 +45,7 @@ public class GameList implements IState {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					l.setState(new Configuration(game));
+					l.playSound("memory/clic.wav");
 				}
 			});
 			button.setEnabled(i == 0);
@@ -60,6 +61,7 @@ public class GameList implements IState {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				l.setState(new Home());
+				l.playSound("memory/clic.wav");
 			}
 		});
 		terminal.repaint();

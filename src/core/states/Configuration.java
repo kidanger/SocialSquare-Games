@@ -140,7 +140,7 @@ public class Configuration implements IState {
 				}
 				game.start(players);
 				l.setState(new Running(game));
-				//l.setState(new EndOfGame(game));
+				l.playSound("memory/clic.wav");
 			}
 		});
 		
@@ -148,6 +148,7 @@ public class Configuration implements IState {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				l.setState(new GameList());
+				l.playSound("memory/clic.wav");
 			}
 		});
 

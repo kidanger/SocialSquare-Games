@@ -1,6 +1,7 @@
 package core.states;
 
 import java.awt.Font;
+
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,6 +31,7 @@ public class Home implements IState {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				l.setState(new GameList());
+				l.playSound("memory/clic.wav");
 			}
 		});
 	}
