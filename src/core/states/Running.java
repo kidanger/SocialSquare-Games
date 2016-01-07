@@ -89,7 +89,9 @@ public class Running implements IState {
 		currentPlayer.setText("Joueur courant : " + game.getCurrentPlayerName());
 		for (int i = 0; i < scores.size(); i++) {
 			JLabel label = scores.get(i);
-			label.setText(game.getPlayerName(i) + " : " + game.getPlayerScore(i) + " points");
+			String points = game.getPlayerScore(i) > 1 ? "points" : "point";
+			label.setText(game.getPlayerName(i) + " : " + game.getPlayerScore(i) + " " + points);
+			label.setForeground(game.getPlayerColor(i));
 		}
 	}
 

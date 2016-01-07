@@ -34,12 +34,6 @@ public class Memory extends Game {
 	private int currentPositionY;
 	private double lockPositionTimer;
 	private double returningTimer;
-	private Color[] playersColor = {
-			new Color(0, 69, 137),
-			new Color(75, 149, 0),
-			new Color(149, 52, 0),
-			new Color(149, 141, 0),
-	};
 	private BufferedImage images[] = new BufferedImage[8];
 
 	public Memory(Lobby lobby) {
@@ -142,10 +136,10 @@ public class Memory extends Game {
 				g.drawString("Memory", 120+dx, 130+dy);
 			}
 		}
-		g.setColor(playersColor[currentPlayer]);
+		g.setColor(getPlayerColor(currentPlayer));
 		g.drawString("Memory", 120, 130);
 
-		g.setColor(playersColor[currentPlayer]);
+		g.setColor(getPlayerColor(currentPlayer));
 		g.fillRect(0, 160, 320, 380);
 		for (int x = 0; x < 4; x++) {
 			for (int y = 0; y < 4; y++) {
@@ -170,7 +164,7 @@ public class Memory extends Game {
 
 	@Override
 	public void drawOnBoard(Graphics g) {
-		g.setColor(playersColor[currentPlayer]);
+		g.setColor(getPlayerColor(currentPlayer));
 		g.fillRect(0, 0, 640, 640);
 		for (int x = 0; x < 4; x++) {
 			for (int y = 0; y < 4; y++) {

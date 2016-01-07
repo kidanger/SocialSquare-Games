@@ -9,6 +9,7 @@ import javax.swing.event.DocumentListener;
 import core.Game;
 import core.IState;
 import core.Lobby;
+import core.Score;
 import core.ServerUtils;
 
 import java.awt.Color;
@@ -149,7 +150,37 @@ public class Configuration implements IState {
 				l.setState(new GameList());
 			}
 		});
-		
+
+		List<Score> scores = ServerUtils.getScoresOfGame(game.getName());
+		Font font = new Font("Morningtype", Font.PLAIN, 22);
+		int i = 0;
+		for (Score score : scores) {
+			Color color = Color.black;
+			if (i == 0) {
+				color = new Color(217, 204, 18);
+			} else if (i == 1) {
+				color = new Color(195, 184, 182);
+			} else if (i == 2) {
+				color = new Color(203, 113, 0);
+			}
+
+			JLabel playerLabel = new JLabel(score.username);
+			playerLabel.setBounds(50, 160 + 30 * i, 100, 25);
+			playerLabel.setFont(font);
+			playerLabel.setForeground(color);
+			terminal.add(playerLabel);
+
+			JLabel scoreLabel = new JLabel(String.valueOf(score.score));
+			scoreLabel.setBounds(160, 160 + 30 * i, 100, 25);
+			scoreLabel.setFont(font);
+			playerLabel.setForeground(color);
+			terminal.add(scoreLabel);
+			i++;
+
+			if (i == 10)
+				break;
+		}
+
 		terminal.repaint();
 	}
 
