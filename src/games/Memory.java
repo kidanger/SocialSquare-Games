@@ -135,11 +135,11 @@ public class Memory extends Game {
 		g.setColor(Color.black);
 		for (int dx = -1; dx <= 1; dx++) {
 			for (int dy = -1; dy <= 1; dy++) {
-				g.drawString("Memory", 120+dx, 130+dy);
+				g.drawString("Memory", 120+dx, 140+dy);
 			}
 		}
 		g.setColor(getPlayerColor(currentPlayer));
-		g.drawString("Memory", 120, 130);
+		g.drawString("Memory", 120, 140);
 
 		g.setColor(getPlayerColor(currentPlayer));
 		g.fillRect(0, 160, 320, 380);

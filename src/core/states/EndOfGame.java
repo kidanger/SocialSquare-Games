@@ -30,22 +30,20 @@ public class EndOfGame implements IState {
 		List<Score> oldScores = ServerUtils.getScoresOfGame(game.getName());
 
 		String congratsText;
-		if (winner != -1){
-			congratsText = "<html>Fin de la partie <br> " 
-					 + "Bravo " + game.getPlayerName(winner) +", vous avez gagné !</html>";
-		}
-		else{
-			congratsText = "<html>Match nul !</html>";
+		if (winner != -1) {
+			congratsText = "Bravo " + game.getPlayerName(winner) +", vous avez gagné !";
+		} else {
+			congratsText = "Égalité";
 		}
 		
 		JLabel congrats = new JLabel(congratsText);
-		congrats.setFont(new Font("Morningtype", Font.BOLD, 26));
-		congrats.setBounds(100, 100, 300, 60);
+		congrats.setFont(new Font("Morningtype", Font.BOLD, 34));
+		congrats.setBounds(100, 100, 500, 60);
 		terminal.add(congrats);
 
 		JButton newGame =  new JButton("Commencer une nouvelle partie");
 		newGame.setFont(new Font("Morningtype", Font.BOLD, 15));
-		newGame.setBounds(200,  250,  300, 60);
+		newGame.setBounds(200,  300,  300, 60);
 		terminal.add(newGame);
 
 		JButton backToMenu =  new JButton("Retour à l'accueil");
@@ -54,26 +52,29 @@ public class EndOfGame implements IState {
 		
 		String scoreText = "<html>Scores <br> ";
 		for (int i = 0; i < game.getNumberOfPlayers(); i++) {
-			boolean betterScore = false;
+			boolean betterScore = true;
 			String username = game.getPlayerName(i);
-			for (Score score : oldScores) {
-				if (score.username.equals(username)) {
-					if (game.getPlayerScore(i) > score.score) {
-						betterScore = true;
+			if (oldScores != null) {
+				for (Score score : oldScores) {
+					if (score.username.equals(username)) {
+						if (game.getPlayerScore(i) <= score.score) {
+							betterScore = false;
+						}
 					}
 				}
 			}
 			scoreText += " &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; " + username
-					+ " : " + game.getPlayerScore(i) + " <br> " ;
+					+ " : " + game.getPlayerScore(i) ;
 			if (betterScore) {
-				scoreText += "(Nouveau record !)";
+				scoreText += " (nouveau record !)";
 			}
+			scoreText += "<br>";
 		}
 		scoreText += "</html>";
 		
 		JLabel scores = new JLabel(scoreText);
 		scores.setFont(new Font("Morningtype", Font.BOLD, 20));
-		scores.setBounds(100, 150, 200, 100);
+		scores.setBounds(100, 150, 600, 100);
 		terminal.add(scores);
 
 		backToMenu.addActionListener(new ActionListener() {
