@@ -210,7 +210,6 @@ public class Memory extends Game {
 	public void onPlayerClick(int x, int y) {
 		int xx = x / 32 - 3;
 		int yy = (y - 160) / 32 - 3;
-		System.out.println(xx + " " + yy + " " + returningTimer);
 		if (xx >= 0 && xx < 4 && yy >= 0 && yy < 4) {
 			playAt(xx, yy);
 			currentPositionX = xx;
