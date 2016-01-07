@@ -30,8 +30,8 @@ public class Home implements IState {
 		selectGame.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				l.playSound("clic.wav");
 				l.setState(new GameList());
-				l.playSound("memory/clic.wav");
 			}
 		});
 	}

@@ -57,6 +57,7 @@ public class Configuration implements IState {
 						labels.get(i).setVisible(i < nb);
 						fields.get(i).setVisible(i < nb);
 					}
+					l.playSound("clic.wav");
 					terminal.repaint();
 				}
 			}
@@ -139,16 +140,16 @@ public class Configuration implements IState {
 					players[i] = fields.get(i).getText();
 				}
 				game.start(players);
+				l.playSound("clic.wav");
 				l.setState(new Running(game));
-				l.playSound("memory/clic.wav");
 			}
 		});
 		
 		back.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				l.playSound("clic.wav");
 				l.setState(new GameList());
-				l.playSound("memory/clic.wav");
 			}
 		});
 

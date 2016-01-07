@@ -47,8 +47,8 @@ public class Running implements IState {
 		back.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				l.playSound("clic.wav");
 				l.setState(new Configuration(game));
-				l.playSound("memory/clic.wav");
 			}
 		});
 		
