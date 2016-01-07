@@ -32,7 +32,7 @@ public class EndOfGame implements IState {
 
 		String congratsText;
 		if (winner != -1) {
-			congratsText = "Bravo " + game.getPlayerName(winner) +", vous avez gagné !";
+			congratsText = "Bravo " + game.getPlayerName(winner) +", vous avez gagné ";
 		} else {
 			congratsText = "Égalité";
 		}
@@ -72,7 +72,7 @@ public class EndOfGame implements IState {
 			scoreText += " &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; " + username
 					+ " : " + game.getPlayerScore(i) ;
 			if (betterScore) {
-				scoreText += " (nouveau record !)";
+				scoreText += " (nouveau record )";
 			}
 			scoreText += "<br>";
 		}

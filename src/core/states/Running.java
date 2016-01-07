@@ -40,6 +40,8 @@ public class Running implements IState {
 		back.setBounds(30, 20, 70, 70);
 		back.setIcon(new ImageIcon("icons/retour.png"));
 		back.setBorderPainted(false);
+		back.setContentAreaFilled(false);
+		back.setOpaque(false);
 		terminal.add(back);
 		
 		JLabel labelLogo = new JLabel();

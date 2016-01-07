@@ -63,9 +63,9 @@ public class Configuration implements IState {
 			}
 		}
 
-		final JButton validate = new JButton("Commencer le jeu !");
+		final JButton validate = new JButton("Commencer le jeu");
 		validate.setFont(new Font("Morningtype", Font.PLAIN, 20));
-		validate.setBounds(300,  400,  200, 40);
+		validate.setBounds(340,  400,  200, 40);
 		terminal.add(validate);
 		validate.setEnabled(false);
 
@@ -130,6 +130,8 @@ public class Configuration implements IState {
 		back.setBounds(30, 20,  70, 70);
 		back.setIcon(new ImageIcon("icons/retour.png"));
 		back.setBorderPainted(false);
+		back.setContentAreaFilled(false);
+		back.setOpaque(false);
 		terminal.add(back);
 
 		validate.addActionListener(new ActionListener() {

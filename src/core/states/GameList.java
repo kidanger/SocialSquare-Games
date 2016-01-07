@@ -29,6 +29,8 @@ public class GameList implements IState {
 		JButton back = new JButton();
 		back.setBounds(30, 20, 70, 70);
 		back.setBorderPainted(false);
+		back.setContentAreaFilled(false);
+		back.setOpaque(false);
 		back.setIcon(new ImageIcon("icons/retour.png"));
 		terminal.add(back);
 		
@@ -40,8 +42,8 @@ public class GameList implements IState {
 		for (final Game game : l.getGameList()) {
 			JButton button = new JButton();
 			button.setIcon(new ImageIcon(game.getIconPath()));
-			button.setBorderPainted(false);
 			button.setBounds(pos[i][0], pos[i][1], 128, 128);
+			button.setBorderPainted(false);
 			button.setContentAreaFilled(false);
 			button.setOpaque(false);
 			terminal.add(button);
